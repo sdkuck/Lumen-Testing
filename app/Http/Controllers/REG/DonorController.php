@@ -16,10 +16,10 @@ class DonorController extends Controller
     public function showDonors($lsid=null)
     {
       if (is_null($lsid)) {
-        $names = app('db')->select('select lsid, fname, lname from ibbis.person_tab');
+        $names = \DB::select('select lsid, fname, lname from ibbis.person_tab');
       }
       else {
-        $names = app('db')->select('select lsid, fname, lname from ibbis.person_tab where lsid = ?', [$lsid]);
+        $names = \DB::select('select lsid, fname, lname from ibbis.person_tab where lsid = ?', [$lsid]);
       }
       return $names;
     }

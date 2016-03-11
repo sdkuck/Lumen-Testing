@@ -17,13 +17,13 @@ class DINController extends Controller
     public function showDINs($din=null,$flag=null)
     {
       if (is_null($din)) {
-        $dins = app('db')->select('select din, dinflag, pcode, intended_use from sys_cmp.vw_inventory');
+        $dins = \DB::select('select din, dinflag, pcode, intended_use from sys_cmp.vw_inventory');
       }
       else if (is_null($flag)) {
-        $dins = app('db')->select('select din, dinflag, pcode, intended_use from sys_cmp.vw_inventory where din = ?', [$din]);
+        $dins = \DB::select('select din, dinflag, pcode, intended_use from sys_cmp.vw_inventory where din = ?', [$din]);
       }
       else {
-        $dins = app('db')->select('select din, dinflag, pcode, intended_use from sys_cmp.vw_inventory where din = ? and dinflag = ?', [$din,$flag]);
+        $dins = \DB::select('select din, dinflag, pcode, intended_use from sys_cmp.vw_inventory where din = ? and dinflag = ?', [$din,$flag]);
       }
       return $dins;
     }
