@@ -14,3 +14,11 @@
 $app->get('/', function () use ($app) {
     return $app->version();
 });
+
+$app->get('donors/', 'REG\DonorController@showDonors');
+$app->get('donors/{lsid}', 'REG\DonorController@showDonors');
+
+//$app->get('dins/{din?}/{flag?}', 'CMP\DINController@showDINs');
+$app->get('dins', 'CMP\DINController@showDINs');
+$app->get('dins/{din}', 'CMP\DINController@showDINs');
+$app->get('dins/{din}/{flag}', 'CMP\DINController@showDINs');
