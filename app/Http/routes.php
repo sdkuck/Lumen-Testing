@@ -22,3 +22,15 @@ $app->get('donors/{lsid}', 'REG\DonorController@showDonors');
 $app->get('dins', 'CMP\DINController@showDINs');
 $app->get('dins/{din}', 'CMP\DINController@showDINs');
 $app->get('dins/{din}/{flag}', 'CMP\DINController@showDINs');
+
+$app->get('vdins', function(){
+  $dc = new \App\Http\Controllers\CMP\DINController();
+  $dins = $dc->showDINs();
+  return view('dins', ['dins'=>$dins]);
+})->middleware('auth');
+$app->get('vdins/{din}', function($din){
+  return view('dins', ['dins'=>(new \App\Http\Controllers\CMP\DINController())->showDINs($din)]);
+});
+$app->get('vdins/{din}/{flag}', function($din, $flag){
+  return view('dins', ['dins'=>(new \App\Http\Controllers\CMP\DINController())->showDINs($din, $flag)]);
+});
